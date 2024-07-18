@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="navbar.html">
+</head>
+<body>
+<div class="container">
+  <form th:action="@{'/add-product'}" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="imageId" class="form-label">Image</label>
+      <input type="file" name="image" class="form-control" id="imageId">
+    </div>
+    <div class="mb-3">
+      <label for="modelId" class="form-label">Model</label>
+      <input type="text" class="form-control" id="modelId" name="model" placeholder="Enter a model">
+    </div>
+    <div class="mb-3">
+      <label for="colorId" class="form-label">Color</label>
+      <input type="text" class="form-control" id="colorId" name="color" placeholder="Enter a color">
+
+    </div>
+    <div class="mb-3">
+      <label for="descriptionId" class="form-label">Description</label>
+      <input type="text" class="form-control" id="descriptionId" name="description" placeholder="Enter a description">
+    </div>
+    <div class="mb-3">
+      <label for="priceId" class="form-label">Price</label>
+      <input type="number" class="form-control" id="priceId" name="price" placeholder="Enter a price">
+    </div>
+    <div class="mb-3">
+      <button class="btn btn-primary" onclick="addProduct()">Submit</button>
+    </div>
+  </form>
+</div>
+  <script type="text/javascript">
+    addProduct();
+
+    function addProduct(){
+      const httpRequest = new XMLHttpRequest();
+      httpRequest.open( "POST", "/api/products", true);
+      httpRequest.setRequestHeader("Content-Type", "application/json")
+      let model = document.getElementById("modelId");
+      let color = document.getElementById("colorId");
+      let description = document.getElementById("descriptionId");
+      let price = document.getElementById("priceId");
+
+      let body = {
+          'model': model.value,
+          'color': color.value,
+          'description': description.value,
+          'price': price.value
+      }
+      body = JSON.stringify(body)
+      httpRequest.send(body)
+    }
+  </script>
+</body>
+</html>

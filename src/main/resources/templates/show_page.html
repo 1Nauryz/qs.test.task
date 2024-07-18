@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="navbar.html">
+    <title></title>
+</head>
+<body style="background-color: #eee;">
+<section>
+    <div class="container py-5">
+
+        <div class="row" style="display: flex; justify-content: center;">
+            <div class="col-lg-8">
+                <div class="card mb-5">
+                    <div class="card-body text-center">
+                        <img th:src="${product.loadImage()}"
+                             class="card-img-top" alt="image"
+                             width="1000" height="500">
+                        <h3 class="my-3"><span th:text="${product.model}"></span></h3>
+                        <p class="text-muted mb-1">Model: <span th:text="${product.model}"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-10">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Color</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><span th:text="${product.color}"></span></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Description</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><span th:text="${product.description}"></span></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Price</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><span th:text="${product.price}"></span></p>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div th:insert="footer.html" style="margin-top: 50px"></div>
+</body>
+</html>

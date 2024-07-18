@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="navbar.html">
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+</head>
+<body>
+  <div class="container">
+    <form th:action="@{'/user/{id}'}" method="post" th:if = "${user!=null}">
+      <input type="hidden" name="id" th:value="${user.id}">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Full Name</label>
+            <input type="text"
+                   class="form-control" id="exampleFormControlInput1"
+                   name="user_full_name" placeholder="Enter a full name"
+                   th:value="${user.full_name}">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput2" class="form-label">Email</label>
+            <input type="email"
+                   class="form-control" id="exampleFormControlInput2"
+                   name="user_email" placeholder="Enter a email"
+                   th:value="${user.email}">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput3" class="form-label">Password</label>
+            <input type="password"
+                   class="form-control" id="exampleFormControlInput3"
+                   name="user_password" placeholder="Enter a new password">
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Save edit</button>
+        </div>
+    </form>
+  </div>
+</body>
+</html>

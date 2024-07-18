@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="navbar.html">
+    <style>
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container row" style="margin-left: 150px">
+        <div class="card" style="width: 18rem; margin: 15px" th:each="prd : ${product}">
+            <img th:src="${prd.loadImage()}" class="card-img-top" alt="image" style="margin-top: 20px" width="300" height="150">
+            <div class="card-body">
+                <h3 style="color: darkgray">Model</h3>
+                <br><span th:text="${prd.model}"></span><br>
+                <small style="color: darkgray">Color</small>
+                <h5 class="card-title" th:text="${prd.color}"></h5>
+                <small style="color: darkgray">Description</small>
+                <p class="card-title" th:text="${prd.description}"></p>
+                <small style="color: darkgray">Price</small>
+                <h4 class="card-text" th:text="${prd.price}"></h4>
+                <a th:href="@{'/details/' + ${prd.id}}" sec:authorize="hasAnyRole('ROLE_ADMIN')" class="btn btn-outline-secondary">View details</a>
+                <a th:href="@{'/show-page/' + ${prd.id}}" class="btn btn-primary">More info</a>
+            </div>
+        </div>
+    </div>
+    <div th:insert="footer.html" style="margin-top: 50px"></div>
+    <script type="text/javascript">
+        loadProducts();
+
+        function loadProducts(){
+            const httpRequest = new XMLHttpRequest();
+            httpRequest.open( "GET", "/api/products", true);
+            httpRequest.onreadystatechange = function () {
+                if(httpRequest.readyState == XMLHttpRequest.DONE && httpRequest.status == 200){
+                    let productList = JSON.parse(httpRequest.responseText);
+                    let cardContent = ""
+                    for (let i=0; i < productList.length; i++){
+                        cardContent+="<small style='color: darkgray'>"
+                        cardContent+="Model</small>"
+                        cardContent+="<br><span th:text='${prd.model}'></span><br>"
+                        cardContent+="<small style='color: darkgray'>Color</small>"
+                        cardContent+="<h3 className='card-title' th:text='${prd.color}'></h3>"
+                        cardContent+="<small style='color: darkgray'>Description</small>"
+                        cardContent+="<h4 className='card-title' th:text='${prd.description}'></h4>"
+                        cardContent+="<small style='color: darkgray'>Price</small>"
+                        cardContent+="<p className='card-text' th:text='${prd.price}'></p>"
+                        cardContent+="<a th:href='@{'/details/' + ${prd.id}}' className='btn btn-secondary'>View details</a>"
+                    }
+                    document.getElementById();
+                }
+            }
+            httpRequest.send();
+        }
+    </script>
+</body>
+</html>

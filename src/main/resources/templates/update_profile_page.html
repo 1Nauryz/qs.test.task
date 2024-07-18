@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="navbar.html"></head>
+<body>
+<div class="container" style="justify-content: center">
+  <div class="alert alert-danger" role="alert" th:if="${param.fullNameError!=null}">
+    Incorrect password
+  </div>
+  <div class="alert alert-success" role="alert" th:if="${param.success!=null}">
+    Full name changed successfully
+  </div>
+  <form th:action="@{'/to-update-profile'}" method="post">
+    <div class="form-group">
+      <label for="exampleInputPassword1">New Full Name</label>
+      <input type="text" class="form-control" name="user_full_name" id="exampleInputPassword1" placeholder="Enter new full name">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword2">Password</label>
+      <input type="password" class="form-control" name="user_password" id="exampleInputPassword2" placeholder="Enter password">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Change profile</button>
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="navbar.html">
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <div class="flex-shrink-0">
+            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                 alt="Generic placeholder image" class="img-fluid"
+                 style="width: 180px; border-radius: 10px;">
+        </div>
+        <div class="flex-grow-1 ms-3">
+            <h5 class="mb-1"><span th:text="${#authentication.principal.full_name}"></span></h5>
+            <p class="mb-2 pb-1" style="color: #2b2a2a;"><span th:text="${#authentication.principal.email}"></span></p>
+            <div class="d-flex pt-1">
+                <button type="button" class="btn btn-outline-primary me-1 flex-grow-1">
+                    <a th:href="@{'/update-password-page'}">Change password</a>
+                </button>
+                <button type="button" class="btn btn-outline-secondary flex-grow-1">
+                    <a th:href="@{'/update-profile-page'}">Change profile</a>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

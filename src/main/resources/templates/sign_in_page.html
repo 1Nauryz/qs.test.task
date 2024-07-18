@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="navbar.html">
+    <meta charset="UTF-8">
+    <title>Sign In</title>
+</head>
+<body>
+    <div class="container" style="justify-content: center">
+        <div class="alert alert-danger" role="alert" th:if="${param.autherror!=null}">
+            Incorrect email or password
+        </div>
+          <form th:action="@{'/to-enter'}" method="post">
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" name="user_email" aria-describedby="emailHelp" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" class="form-control" name="user_password" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <br>
+              <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+</body>
+</html>

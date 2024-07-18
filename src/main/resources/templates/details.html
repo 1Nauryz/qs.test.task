@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="navbar.html">
+</head>
+<body>
+<div class="container">
+    <form action="/edit-product" method="post" th:if = "${product!=null}" enctype="multipart/form-data">
+        <input type="hidden" name="id" th:value="${product.id}">
+        <div class="mb-3">
+            <label for="imageId" class="form-label">Image</label>
+            <input type="file" name="image" class="form-control" id="imageId">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Model</label>
+            <input type="text"
+                   class="form-control" id="exampleFormControlInput1"
+                   name="model" placeholder="Enter a model"
+                   th:value="${product.model}">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput2" class="form-label">Color</label>
+            <input type="text"
+                   class="form-control" id="exampleFormControlInput2"
+                   name="color" placeholder="Enter a color"
+                   th:value="${product.color}">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput3" class="form-label">Description</label>
+            <input type="text"
+                   class="form-control" id="exampleFormControlInput3"
+                   name="description" placeholder="Enter a description"
+                   th:value="${product.description}">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput4" class="form-label">Price</label>
+            <input type="text"
+                   class="form-control" id="exampleFormControlInput4"
+                   name="price" placeholder="Enter a price"
+                   th:value="${product.price}">
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Save edit</button>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete product</button>
+        </div>
+    </form>
+    <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" th:if = "${product!=null}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form th:action="@{'/delete-product'}" method="delete">
+                    <input type="hidden" name="id" th:value="${product.id}">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Delete</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="text-center">Delete this product?</h3>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Not now</button>
+                        <button  class="btn btn-danger">Yep</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <h2 th:if="${product==null}" class="text-center">
+        PRODUCT NOT FOUND
+    </h2>
+</div>
+</body>
+</html>

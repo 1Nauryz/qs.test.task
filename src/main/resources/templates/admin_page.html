@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="navbar.html"></head>
+<body>
+  <div class="container">
+    <h2 style="display: flex; justify-content: center">ADMIN PANEL</h2>
+  </div>
+  <div class="container">
+    <table class="table">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">FULL NAME</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">ACTION</th>
+        <th scope="col">ACTION</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="us : ${users}">
+        <th scope="row"><span th:text="${us.id}"></span></th>
+        <td><span th:text="${us.full_name}"></span></td>
+        <td><span th:text="${us.email}"></span></td>
+        <td><form th:action="@{'/delete-user'}" method="post">
+            <input type="hidden" name="id" th:value="${us.id}">
+            <button  class="btn btn-danger">DELETE</button>
+        </form></td>
+        <td>
+          <button class="btn btn-primary">
+            <a th:href="@{'edit-page/' + ${us.id}}" sec:authorize="hasAnyRole('ROLE_ADMIN')" style="text-decoration: none; color: white">Edit User</a>
+          </button>
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
